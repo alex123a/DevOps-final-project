@@ -6,8 +6,12 @@ on:
   pull_request:
     branches:
     - master
+env:
+  docker_username: ${{ github.actor }}
+  docker_password: ${{ secrets.GITHUB_TOKEN }}
+  GIT_COMMIT: ${{ github.sha }}
 jobs:
-  Build-Test:
+  Build-and-upload:
     runs-on: ubuntu-latest
     steps:
       - name: clone-down
@@ -20,3 +24,23 @@ jobs:
         run: cd frontend/ && go build
       - name: test-frontend
         run: cd frontend/ && go test
+      - name: upload-repo
+        uses: actions/upload-artifact@v3
+        with:
+          name: code
+          path: .
+  Docker-image:
+    runs-on: ubuntu-latest
+    needs: [Build-and-upload]
+    permissions:
+      packages: write
+    steps:
+      - name: Download code
+        uses: actions/download-artifact@v3
+        with:
+          name: code
+          path: .
+      - name: build docker
+        run: chmod +x CI/build-docker.sh && CI/build-docker.sh
+      - name: push docker
+        run: chmod +x CI/push-docker.sh && CI/push-docker.sh
