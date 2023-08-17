@@ -50,7 +50,12 @@ jobs:
     permissions:
       packages: write
     steps:
-      - name: Run application
-        uses: isbang/compose-action@v1.5.1
+      - name: Download code
+        uses: actions/download-artifact@v3
         with:
-          compose-file: "./docker-compose.yml"
+          name: code
+          path: .
+      - name: Run application
+        run: COMMIT_HASH=${{ github.sha }} docker compose up -d
+      - name: Stop application
+        run: docker compose down
