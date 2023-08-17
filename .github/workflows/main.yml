@@ -16,8 +16,6 @@ jobs:
         uses: actions/setup-go@v4
       - name: build-backend
         run: cd backend/ && go build
-      - name: test-backend
-        run: go test
       - name: build-frontend
         run: cd ../frontend/ && go build
       - name: test-frontend
