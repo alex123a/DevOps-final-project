@@ -50,9 +50,12 @@ jobs:
     permissions:
       packages: write
     steps:
+      - name: Download code
+        uses: actions/download-artifact@v3
+        with:
+          name: code
+          path: .
       - name: Run application
         uses: isbang/compose-action@v1.5.1
         with:
           compose-file: "./docker-compose.yml"
-        env:
-          COMMIT_HASH: $env.GIT_COMMIT
