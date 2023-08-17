@@ -20,5 +20,3 @@ jobs:
         run: cd ../frontend/ && go build
       - name: test-frontend
         run: go test
-      
-      
