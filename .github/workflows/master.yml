@@ -15,8 +15,8 @@ jobs:
       - name: install-go
         uses: actions/setup-go@v4
       - name: build-backend
-        run: cd backend/ && go build
+        run: cd backend/ && go build && go run backend
       - name: build-frontend
-        run: cd frontend/ && go build
+        run: cd frontend/ && go build && go run frontend
       - name: test-frontend
         run: cd frontend/ && go test
