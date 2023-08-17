@@ -14,4 +14,10 @@ spec:
       containers:
       - name: fortune-cookie-backend
         image: ghcr.io/alex123a/fortune-cookie-backend:latest
+        imagePullPolicy: Always
         resources: {}
+        env:
+          - name: REDIS_DNS
+            value: redis-server
+          - name: REDIS_PORT
+            value: "6379"
