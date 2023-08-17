@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fortune-cookie-frontend
+spec:
+  selector:
+    matchLabels:
+      app: fortune-cookie-frontend
+  template:
+    metadata:
+      labels:
+        app: fortune-cookie-frontend
+    spec:
+      containers:
+      - name: fortune-cookie-frontend
+        image: ghcr.io/alex123a/fortune-cookie-frontend:latest
+        resources: {}
+        env:
+          - name: BACKEND_DNS
+            value: fortune-cookie-backend
+          - name: BACKEND_PORT
+            value: "9000"
+        ports:
+          - containerPort: 8080

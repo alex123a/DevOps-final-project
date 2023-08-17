@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fortune-cookie-backend
+spec:
+  selector:
+    matchLabels:
+      run: fortune-cookie-backend
+  template:
+    metadata:
+      labels:
+        run: fortune-cookie-backend
+    spec:
+      containers:
+      - name: fortune-cookie-backend
+        image: ghcr.io/alex123a/fortune-cookie-backend:latest
+        resources: {}
