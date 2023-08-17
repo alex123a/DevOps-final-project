@@ -11,5 +11,10 @@ jobs:
     permissions:
       packages: write
     steps:
+      - name: Download code
+        uses: actions/download-artifact@v3
+        with:
+          name: code
+          path: .
       - name: Apply kubernetes
         run: echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig && kubectl --kubeconfig kubeconfig apply -f ./kubernetes
