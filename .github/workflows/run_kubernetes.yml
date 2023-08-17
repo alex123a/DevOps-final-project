@@ -1,0 +1,16 @@
+name: run_kubernetes
+on:
+  workflow_run:
+    workflows: ["testing-the-waters"]
+    types:
+      - completed
+    branches: [master]
+jobs:
+  Run-kubernetes:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    steps:
+      - name: Apply kubernetes
+      - run: echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig
+      - run: kubectl --kubeconfig kubeconfig apply -f ./kubernetes
