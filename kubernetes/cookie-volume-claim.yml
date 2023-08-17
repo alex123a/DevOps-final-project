@@ -3,6 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: cookie-pvc
 spec:
+  # storageClassName: "cookie-storage-class"
   storageClassName: "gp2"
   accessModes:
     - ReadWriteOnce
