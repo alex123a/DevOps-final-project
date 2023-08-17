@@ -7,7 +7,7 @@ on:
     branches:
     - master
 env:
-  docker_username: ${{ github.actor }}
+  docker_username: alex123a
   docker_password: ${{ secrets.GITHUB_TOKEN }}
   GIT_COMMIT: ${{ github.sha }}
 jobs:
