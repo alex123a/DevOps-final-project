@@ -13,12 +13,11 @@ spec:
     spec:
       containers:
       - name: fortune-cookie-frontend
-        image: ghcr.io/alex123a/fortune-cookie-frontend:latest
+        image: ghcr.io/alex123a/fortune-cookie-frnntend:latest
+        imagePullPolicy: Always
         resources: {}
         env:
           - name: BACKEND_DNS
             value: fortune-cookie-backend
           - name: BACKEND_PORT
             value: "9000"
-        ports:
-          - containerPort: 8080
