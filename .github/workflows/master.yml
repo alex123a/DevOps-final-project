@@ -10,6 +10,7 @@ env:
   docker_username: ${{ vars.USERNAME }}
   docker_password: ${{ secrets.GITHUB_TOKEN }}
   GIT_COMMIT: ${{ github.sha }}
+  test: "non-healthy"
 jobs:
   Build-and-upload:
     runs-on: ubuntu-latest
@@ -57,5 +58,7 @@ jobs:
           path: .
       - name: Run application
         run: COMMIT_HASH=${{ github.sha }} docker compose up -d
+      - name: test application
+        run: chmod +x CI/test-docker.sh && CI/test-docker.sh
       - name: Stop application
         run: docker compose down
