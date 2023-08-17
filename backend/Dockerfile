@@ -1,9 +1,10 @@
-FROM golang:1.21
-
-WORKDIR /usr/src/app
-COPY go.mod go.sum ./
+FROM golang:1.21 as builder
+WORKDIR /app
+COPY . /app
 RUN go mod download && go mod verify
+RUN cd /app && go build -tags osusergo,netgo -o goapp
 
-COPY ./ ./
-RUN go build
-CMD ["go", "run", "backend"]
+FROM alpine
+WORKDIR /app
+COPY --from=builder /app/goapp /app/
+ENTRYPOINT ./goapp
