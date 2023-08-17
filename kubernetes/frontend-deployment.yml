@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: fortune-cookie-frontend
-        image: ghcr.io/alex123a/fortune-cookie-frnntend:latest
+        image: ghcr.io/alex123a/fortune-cookie-frontend:latest
         imagePullPolicy: Always
         resources: {}
         env:
