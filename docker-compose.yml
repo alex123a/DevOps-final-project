@@ -1,8 +1,7 @@
 version: '3'
 services:
   frontend:
-    build:
-      context: ./frontend
+    image: ghcr.io/alex123a/fortune-cookie-frontend:latest
     ports:
       - "8080:8080"
     environment:
@@ -10,5 +9,4 @@ services:
     depends_on:
     - backend
   backend:
-    build:
-      context: ./backend
+    image: ghcr.io/alex123a/fortune-cookie-backend:latest
