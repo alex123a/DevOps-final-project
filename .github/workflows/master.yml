@@ -17,6 +17,6 @@ jobs:
       - name: build-backend
         run: cd backend/ && go build
       - name: build-frontend
-        run: cd ../frontend/ && go build
+        run: cd .. && cd frontend/ && go build
       - name: test-frontend
         run: go test
