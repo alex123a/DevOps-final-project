@@ -11,8 +11,17 @@ spec:
       labels:
         run: redis-server
     spec:
+      volumes:
+        - name: cookie-pvc
+          persistentVolumeClaim: 
+            claimName: cookie-pvc
       containers:
-      - name: redis-server
-        image: "redis:latest"
-        imagePullPolicy: Always
-        resources: {}
+        - name: redis-server
+          image: "redis:latest"
+          imagePullPolicy: Always
+          resources: {}
+          volumeMounts:
+            - name: cookie-pvc
+              mountPath: /var/lib/redis/data
+              subPath: cookie-pvc
+            
