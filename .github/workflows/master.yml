@@ -2,10 +2,10 @@ name: testing-the-waters
 on:
   push:
     branches:
-    - main
+    - master
   pull_request:
     branches:
-    - main
+    - master
 jobs:
   Build-Test:
     runs-on: ubuntu-latest
@@ -17,8 +17,6 @@ jobs:
       - name: build-backend
         run: cd backend/ && go build
       - name: build-frontend
-        run: cd ../frontend/ && go build
+        run: cd frontend/ && go build
       - name: test-frontend
-        run: go test
-      
-      
+        run: cd frontend/ && go test
