@@ -12,5 +12,4 @@ jobs:
       packages: write
     steps:
       - name: Apply kubernetes
-      - run: echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig
-      - run: kubectl --kubeconfig kubeconfig apply -f ./kubernetes
+        run: echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig && kubectl --kubeconfig kubeconfig apply -f ./kubernetes
