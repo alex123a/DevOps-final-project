@@ -14,17 +14,17 @@ jobs:
   Build-and-upload:
     runs-on: ubuntu-latest
     steps:
-      - name: clone-down
+      - name: Clone down
         uses: actions/checkout@v3
-      - name: install-go
+      - name: Install go
         uses: actions/setup-go@v4
-      - name: build-backend
+      - name: Build backend
         run: cd backend/ && go build
-      - name: build-frontend
+      - name: Build frontend
         run: cd frontend/ && go build
-      - name: test-frontend
+      - name: Test frontend
         run: cd frontend/ && go test
-      - name: upload-repo
+      - name: Upload repo
         uses: actions/upload-artifact@v3
         with:
           name: code
@@ -35,14 +35,14 @@ jobs:
     permissions:
       packages: write
     steps:
-      - name: download-code
+      - name: Download code
         uses: actions/download-artifact@v3
         with:
           name: code
           path: .
-      - name: build-docker
+      - name: Build docker
         run: chmod +x CI/build-docker.sh && CI/build-docker.sh
-      - name: push-docker
+      - name: Push docker
         run: chmod +x CI/push-docker.sh && CI/push-docker.sh
   Run-application:
     runs-on: ubuntu-latest
@@ -50,7 +50,7 @@ jobs:
     permissions:
       packages: write
     steps:
-      - name: run-application
+      - name: Run application
         uses: isbang/compose-action@v1.5.1
         with:
           compose-file: "./docker-compose.yml"
