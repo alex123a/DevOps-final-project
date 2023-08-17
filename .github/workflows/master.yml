@@ -56,8 +56,6 @@ jobs:
           name: code
           path: .
       - name: Run application
-        uses: isbang/compose-action@v1.5.1
-        with:
-          compose-file: "./docker-compose.yml"
-        env:
-          COMMIT_HASH: ${{ github.sha }}
+        run: COMMIT_HASH=${{ github.sha }} docker compose up -d
+      - name: Stop application
+        run: docker compose down
