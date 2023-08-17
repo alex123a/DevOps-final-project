@@ -57,5 +57,7 @@ jobs:
           path: .
       - name: Run application
         run: COMMIT_HASH=${{ github.sha }} docker compose up -d
+      - name: test application
+        run: chmod +x CI/test-docker.sh && CI/test-docker.sh
       - name: Stop application
         run: docker compose down
