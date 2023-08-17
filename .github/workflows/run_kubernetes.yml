@@ -1,7 +1,7 @@
 name: run_kubernetes
 on:
   workflow_run:
-    workflows: ["master.yml"]
+    workflows: ["testing-the-waters"]
     types:
       - completed
     branches: [master]
