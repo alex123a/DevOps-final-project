@@ -1,0 +1,24 @@
+name: dev-testing-the-waters
+on:
+  push:
+    branches:
+    - "dev-**"
+jobs:
+  Build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone down
+        uses: actions/checkout@v3
+      - name: Install go
+        uses: actions/setup-go@v4
+      - name: Build backend
+        run: cd backend && go build
+      - name: Build frontend
+        run: cd frontend && go build
+      - name: Test frontend
+        run: cd frontend && go test
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: code
+          path: .
