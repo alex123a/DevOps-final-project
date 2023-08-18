@@ -1,10 +1,13 @@
-FROM golang:1.21
-
-WORKDIR /usr/src/app
-COPY go.mod ./
+FROM golang:1.21 as builder
+WORKDIR /app
+COPY . /app
 RUN go mod download && go mod verify
+RUN cd /app && go build -tags osusergo,netgo -o goapp
 
-COPY ./ ./
-RUN go build
-EXPOSE 8080
-CMD ["go", "run", "frontend"]
+FROM alpine
+#COPY /templates/* /app/templates/
+WORKDIR /app
+COPY --from=builder /app/goapp  /app/
+COPY --from=builder /app/templates /app/templates/
+COPY --from=builder /app/static /app/static/
+ENTRYPOINT ./goapp
