@@ -18,7 +18,13 @@ spec:
           resources: {}
           env:
             - name: REDIS_DNS
-              value: redis-server
+              valueFrom:
+                configMapKeyRef:
+                  name: redis-config
+                  key: REDIS_DNS
             - name: REDIS_PORT
-              value: "6379"
+              valueFrom:
+                configMapKeyRef:
+                  name: redis-config
+                  key: REDIS_PORT
             
