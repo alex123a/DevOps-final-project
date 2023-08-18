@@ -3,11 +3,6 @@ kind: Deployment
 metadata:
   name: redis-server
 spec:
-  replicas: 4
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
   selector:
     matchLabels:
       run: redis-server

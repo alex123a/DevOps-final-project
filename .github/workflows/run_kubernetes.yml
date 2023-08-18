@@ -14,4 +14,5 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Apply kubernetes
-        run: echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig && kubectl --kubeconfig kubeconfig apply -f ./kubernetes && kubectl --kubeconfig kubeconfig rollout status deployment fortune-cookie-frontend && kubectl --kubeconfig kubeconfig rollout status deployment fortune-cookie-backend && kubectl --kubeconfig kubeconfig rollout status deployment redis-server
+        run: echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig && kubectl --kubeconfig kubeconfig apply -f ./kubernetes && kubectl --kubeconfig kubeconfig rollout status deployment fortune-cookie-frontend && kubectl --kubeconfig kubeconfig rollout status deployment fortune-cookie-backend
+
