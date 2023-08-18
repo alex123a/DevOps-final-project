@@ -3,6 +3,11 @@ kind: Deployment
 metadata:
   name: fortune-cookie-frontend
 spec:
+  replicas: 4
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
   selector:
     matchLabels:
       app: fortune-cookie-frontend
