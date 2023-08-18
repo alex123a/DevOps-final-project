@@ -10,7 +10,7 @@ jobs:
       - name: Clone down
         uses: actions/checkout@v3
       - name: Install go
-        uses: actions/actions/setup-go@v4
+        uses: actions/setup-go@v4
       - name: Build backend
         run: cd backend && go build
       - name: Build frontend
