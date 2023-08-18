@@ -16,5 +16,4 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Apply kubernetes
-        run: echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig && kubectl --kubeconfig kubeconfig apply -f ./kubernetes && kubectl set image deployment/fortune-cookie-frontend fortune-cookie-frontend=ghcr.io/alex123a/fortune-cookie-frontend:1.0-${{ github.sha }} && kubectl set image deployment/fortune-cookie-backend fortune-cookie-backend=ghcr.io/alex123a/fortune-cookie-backend:1.0-${{ github.sha }} && kubectl --kubeconfig kubeconfig rollout status deployment fortune-cookie-frontend && kubectl --kubeconfig kubeconfig rollout status deployment fortune-cookie-backend
-
+        run: echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig && kubectl --kubeconfig kubeconfig apply -f ./kubernetes && kubectl --kubeconfig kubeconfig set image deployment/fortune-cookie-frontend fortune-cookie-frontend=ghcr.io/alex123a/fortune-cookie-frontend:1.0-${{ github.sha }} && kubectl --kubeconfig kubeconfig set image deployment/fortune-cookie-backend fortune-cookie-backend=ghcr.io/alex123a/fortune-cookie-backend:1.0-${{ github.sha }} && kubectl --kubeconfig kubeconfig rollout status deployment fortune-cookie-frontend && kubectl --kubeconfig kubeconfig rollout status deployment fortune-cookie-backend
